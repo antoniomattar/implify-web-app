@@ -268,6 +268,7 @@ export default function Dashboard() {
           <div className="grid gap-6">
             <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {employees.map((employee) => (
+                // TODO: Change background color of the card based on the employee's color
                 <Card key={employee.id}>
                   <CardContent className="flex flex-col items-center gap-4 p-6">
                     <Avatar className="h-16 w-16">
