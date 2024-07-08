@@ -1,8 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/9xjyZMOtpXB
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 "use client";
 import {
   TooltipProvider,
@@ -36,7 +31,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Employee } from "@/lib/Employee";
-import router from "next/navigation";
+import { useRouter } from 'next/navigation'
 
 export default function Dashboard() {
   // State to hold employees data
@@ -57,6 +52,8 @@ export default function Dashboard() {
   useEffect(() => {
     fetchEmployees();
   }, []);
+
+  const router = useRouter();
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -290,9 +287,7 @@ export default function Dashboard() {
                     </div>
                     <Button
                       size="sm"
-                      onClick={() =>
-                        router.redirect(`/users/${employee.id}`)
-                      }
+                      onClick={() => router.push(`/employee/${employee.id}`)}
                     >
                       View Profile
                     </Button>
