@@ -1,59 +1,63 @@
-import { Card, CardHeader, CardContent } from "@/components/ui/card"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Employee } from "@/lib/Employee";
+import { useRouter } from "next/navigation";
 
-
-
-export default function UserCard(props:any) {
+export default function UserCard(props: Employee) {
+  const router = useRouter();
   return (
-    <Card className="w-full max-w-md mx-auto hover:shadow-2xl transition-shadow">
-      <CardHeader className="bg-muted/20 p-6">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <Avatar className="h-16 w-16">
-              <AvatarImage src="/placeholder-user.jpg" />
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-            <div className="grid gap-1">
-              <div className="flex items-center gap-2">
-                <h2 className="text-xl font-bold">John Doe</h2>
-              </div>
-              <div className="flex items-center gap-2">
-                <BriefcaseIcon className="h-4 w-4 text-muted-foreground" />
-                <p className="text-muted-foreground text-sm">Software Engineer</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <BuildingIcon className="h-4 w-4 text-muted-foreground" />
-                <p className="text-muted-foreground text-sm">Acme Inc.</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPinIcon className="h-4 w-4 text-muted-foreground" />
-                <p className="text-muted-foreground text-sm">123 Main St, San Francisco, CA 94101</p>
+    <div>
+      <Card
+        style={{ backgroundColor: props.color }}
+        className="w-full max-w-md mx-auto hover:shadow-2xl transition-shadow"
+      >
+        <CardHeader className="bg-muted/20 p-6">
+          <div className="flex flex-col items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <Avatar className="h-16 w-16">
+                {/* <AvatarImage src="/placeholder-user.jpg" /> */}
+                <AvatarFallback>
+                  {props.fname[0]}
+                  {props.lname[0]}
+                </AvatarFallback>
+              </Avatar>
+              <div className="grid gap-1">
+                <div className="flex items-center gap-2">
+                  <h2 className="text-xl font-bold">
+                    {props.fname} {props.lname}
+                  </h2>
+                </div>
+                <div className="flex items-center gap-2">
+                  <BuildingIcon className="h-4 w-4 text-muted-foreground" />
+                  <p className="text-muted-foreground text-sm">
+                    {props.company}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPinIcon className="h-4 w-4 text-muted-foreground" />
+                  <p className="text-muted-foreground text-sm">
+                    {props.address}, {props.city}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </CardHeader>
-      <CardContent className="p-6">
-        <div className="grid gap-4">
-          <p className="text-muted-foreground line-clamp-3">
-            John is a skilled software engineer with a passion for building innovative and user-friendly applications.
-            He has extensive experience in full-stack development, with a focus on modern JavaScript frameworks and
-            cloud-based architectures.
-          </p>
-          <div className="flex items-center gap-2">
-            <Button variant="link" className="text-sm">
-              Edit
-            </Button>
-            <FilePenIcon className="h-4 w-4 text-muted-foreground" />
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  )
+        </CardHeader>
+        <CardContent className="p-6 text-center">
+          <Button
+            size="sm"
+            onClick={() => router.push(`/employee/${props.id}`)}
+          >
+            View Profile
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
 }
 
-function BriefcaseIcon(props:any) {
+function BriefcaseIcon(props: any) {
   return (
     <svg
       {...props}
@@ -70,11 +74,10 @@ function BriefcaseIcon(props:any) {
       <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
       <rect width="20" height="14" x="2" y="6" rx="2" />
     </svg>
-  )
+  );
 }
 
-
-function BuildingIcon(props:any) {
+function BuildingIcon(props: any) {
   return (
     <svg
       {...props}
@@ -100,11 +103,10 @@ function BuildingIcon(props:any) {
       <path d="M8 10h.01" />
       <path d="M8 14h.01" />
     </svg>
-  )
+  );
 }
 
-
-function FilePenIcon(props:any) {
+function FilePenIcon(props: any) {
   return (
     <svg
       {...props}
@@ -122,11 +124,10 @@ function FilePenIcon(props:any) {
       <path d="M14 2v4a2 2 0 0 0 2 2h4" />
       <path d="M10.4 12.6a2 2 0 1 1 3 3L8 21l-4 1 1-4Z" />
     </svg>
-  )
+  );
 }
 
-
-function MapPinIcon(props:any) {
+function MapPinIcon(props: any) {
   return (
     <svg
       {...props}
@@ -143,5 +144,5 @@ function MapPinIcon(props:any) {
       <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
       <circle cx="12" cy="10" r="3" />
     </svg>
-  )
+  );
 }

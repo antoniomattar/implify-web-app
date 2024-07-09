@@ -10,6 +10,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useRouter } from "next/navigation";
+import LoadingSkeleton from "@/components/loading";
+import { User } from "lucide-react";
+import UserCard from "@/components/card";
 
 export const EmployeesPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -57,46 +60,34 @@ export const EmployeesPage = () => {
 
   const router = useRouter();
 
+  if (currentEmployees.length == 0) return <LoadingSkeleton />;
+
   return (
     <div>
       <main className="flex-1 p-4 sm:px-6 sm:py-0">
         {/* Employees Cards */}
         <div className="grid gap-6 my-5">
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 items-center">
             {currentEmployees.map((employee) => (
-              // TODO: Change background color of the card based on the employee's color
-              <Card
-                key={employee.id}
-                style={{ backgroundColor: employee.color }}
-              >
-                <CardContent className="flex flex-col items-center gap-4 p-6">
-                  <Avatar className="h-16 w-16">
-                    <AvatarImage src="/placeholder-user.jpg" />
-                    <AvatarFallback>
-                      {employee.fname[0]}
-                      {employee.lname[0]}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="grid gap-1 text-center">
-                    <div className="font-semibold">
-                      {employee.fname} {employee.lname}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {employee.fname}@implify.com
-                    </div>
-                  </div>
-                  <Button
-                    size="sm"
-                    onClick={() => router.push(`/employee/${employee.id}`)}
-                  >
-                    View Profile
-                  </Button>
-                </CardContent>
-              </Card>
+              <UserCard key={employee.id} {...employee} />
             ))}
+
+            {/* Add Employee Card */}
+            <Button
+              className="rounded-3xl h-fit w-fit max-w-md mx-auto hover:shadow-2xl transition-shadow"
+              onClick={() => router.push("/dashboard/add")}
+            >
+              <CardContent className="p-6 text-center flex flex-col items-center justify-center">
+                <div className="flex items-center justify-center">
+                  <User className="h-12 w-12 text-muted-foreground" />
+                </div>
+                <h2 className="mt-4 text-lg font-bold text-muted-foreground">
+                  Add Employee
+                </h2>
+              </CardContent>
+            </Button>
           </div>
         </div>
-
         {/* Pagination Logic */}
         <Pagination>
           <PaginationContent>

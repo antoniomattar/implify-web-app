@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className="flex items-center h-16 px-4 border-b bg-background shadow-sm sm:px-6">
       <div className="flex items-center gap-4">
-        <Link href="#" className="text-lg font-bold" prefetch={false}>
+        <Link href="/dashboard" className="text-lg font-bold" prefetch={false}>
           Admin Dashboard
         </Link>
       </div>
@@ -24,8 +24,8 @@ export default function Header() {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon" className="rounded-full">
               <Avatar className="h-8 w-8">
-                <AvatarImage src="/placeholder-user.jpg" />
-                <AvatarFallback>A</AvatarFallback>
+                {/* <AvatarImage src="/placeholder-user.jpg" /> */}
+                <AvatarFallback>AM</AvatarFallback>
               </Avatar>
             </Button>
           </DropdownMenuTrigger>

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import pool from "@/lib/db";
 
 export async function GET() {
@@ -30,3 +30,29 @@ export async function GET() {
     );
   }
 }
+
+export async function POST(request: NextRequest) {
+  const employee = await request.json();
+
+  try {
+    const db = await pool.getConnection();
+    const query = "insert into employees (name, email, phone, address) values (?, ?, ?, ?)";
+    const [result] = await db.execute(query, [
+      employee.name,
+      employee.email,
+      employee.phone,
+      employee.address,
+    ]);
+    db.release();
+
+    return NextResponse.json(result);
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: error,
+      },
+      { status: 500 }
+    );
+  }
+}
+
