@@ -41,7 +41,7 @@ export const EmployeesPage = () => {
     };
 
     fetchEmployeesData();
-  }, []);
+  }, [employeesPerPage]);
 
   const handlePageChange = (pageNumber: any) => {
     setCurrentPage(pageNumber);

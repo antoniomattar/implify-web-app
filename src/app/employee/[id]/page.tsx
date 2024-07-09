@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Employee } from "@/lib/Employee";
+import LoadingSkeleton from "@/components/loading";
 
 export default function Page({ params }: { params: { id: string } }) {
   const [employee, setEmployee] = useState<Employee | null>(null);
@@ -31,7 +32,7 @@ export default function Page({ params }: { params: { id: string } }) {
   };
 
   if (!employee)
-    return <div className="text-center text-gray-600">Loading...</div>;
+    return <LoadingSkeleton/>;
 
   return (
     <div className="container mx-auto p-4">
