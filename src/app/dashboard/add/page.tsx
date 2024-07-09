@@ -3,7 +3,10 @@ import React from 'react'
 
 function Add() {
   return (
-    <div>Add</div>
+    <div>
+      {/* TODO */}
+      FEATURE IN PROGRESS, COMING SOON...
+    </div>
   )
 }
 

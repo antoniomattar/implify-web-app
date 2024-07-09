@@ -25,6 +25,10 @@ IMPLIFY-WEB-APP is a web application designed to manage employee information eff
 - [x] Set up project structure
 - [ ] Implement UI components
   - [x] Dashboard
+    - [x] Cards
+    - [ ] Charts
+    - [ ] Employees per page
+    - [ ] Filter employees by Company
   - [ ] Employee management forms
   - [x] Login and registration forms
 - [ ] Integrate API endpoints with frontend

@@ -52,20 +52,19 @@ export default function Header() {
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link
-                href="#"
-                className="flex items-center gap-2"
-                prefetch={false}
-              >
                 <div className="h-4 w-4" />
                 <form
                   action={async () => {
-                    
-                    await signOut();
+                    // "use server";
+                    await signOut(
+                      {
+                        redirect: true,
+                        redirectTo: "/login",
+                      }
+                    );
                   }}
                 ></form>
                 <span>Logout</span>
-              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
