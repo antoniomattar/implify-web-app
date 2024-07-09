@@ -29,6 +29,9 @@ export default function Page({ params }: { params: { id: string } }) {
   };
 
   const handleDelete = async () => {
+    // Open a confirmation dialog before deleting
+
+    
     await axios.delete(`/api/employees/${id}`);
     router.push("/dashboard");
   };
