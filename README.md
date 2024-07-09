@@ -9,7 +9,7 @@ IMPLIFY-WEB-APP is a web application designed to manage employee information eff
 ### Backend
 - [x] Set up MySQL database
 - [ ] Configure Prisma ORM
-- [ ] Create User model and migrations
+- [X] Create User model
 - [x] Implement API endpoints for employee management
   - [ ] Add employee
   - [ ] Update employee
@@ -18,7 +18,7 @@ IMPLIFY-WEB-APP is a web application designed to manage employee information eff
 - [x] Implement user authentication
   - [ ] Password hashing and security
   - [ ] JWT token generation and validation
-- [x] Validate input data using Joi
+- [x] Validate input data
 
 ### Frontend
 - [x] Initialize Next.js project
@@ -29,8 +29,7 @@ IMPLIFY-WEB-APP is a web application designed to manage employee information eff
   - [x] Login and registration forms
 - [ ] Integrate API endpoints with frontend
 - [ ] Implement authentication flows
-  - [ ] User login
-  - [ ] User registration
+  - [X] User login
   - [x] Protected routes (temporarily off)
 
 ### Documentation

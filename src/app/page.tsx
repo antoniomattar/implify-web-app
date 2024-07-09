@@ -1,11 +1,4 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/7OTZcMOCBM3
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-import { Button } from "@/components/ui/button"
-
-export default function Component() {
+export default function Home() {
   return (
     <section className="w-full h-screen py-20 md:py-32 bg-gradient-to-r from-[#7928CA] to-[#FF0080]">
       <div className=" align-middle px-4 md:px-6">
