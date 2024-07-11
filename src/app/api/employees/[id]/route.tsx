@@ -31,7 +31,7 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   const id = params.id; // user id
-  const employee = await request.json() as Employee;
+  const employee = (await request.json()) as Employee;
 
   try {
     const db = await pool.getConnection();
@@ -39,25 +39,14 @@ export async function PUT(
     let query = "update employees set ";
     let fields = [];
     let values = [];
-    if (employee.fname) {
-      fields.push("fname = ?");
-      values.push(employee.fname);
-    }
-    if (employee.lname) {
-      fields.push("lname = ?");
-      values.push(employee.lname);
-    }
-    if (employee.address) {
-      fields.push("address = ?");
-      values.push(employee.address);
-    }
-    if (employee.city) {
-      fields.push("city = ?");
-      values.push(employee.city);
-    }
-    if (employee.company) {
-      fields.push("company = ?");
-      values.push(employee.company);
+
+    // Iterate over employee object properties
+    for (const [key, value] of Object.entries(employee)) {
+      if (value) {
+        // Check if the property value is truthy
+        fields.push(`${key} = ?`); // Use the property key to generate the field placeholder
+        values.push(value); // Add the property value to the values array
+      }
     }
 
     query += fields.join(", ") + " where id = ?";
