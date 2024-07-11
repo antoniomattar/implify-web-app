@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { authConfig } from "../auth.config";
-import { sql } from "@vercel/postgres";
 import type { User } from "@/lib/User";
 
 // TO BE USED IF PASSED TO DATABASE FOR LOGIN
