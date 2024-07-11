@@ -17,7 +17,7 @@ IMPLIFY-WEB-APP is a web application designed to manage employee information eff
   - [x] Fetch employee details
 - [x] Implement user authentication
   - [x] Password hashing and security
-  - [ ] JWT token generation and validation
+  - [ ] Implement the user logout
 - [x] Validate input data
 
 ### Frontend
