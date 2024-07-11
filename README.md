@@ -8,31 +8,31 @@ IMPLIFY-WEB-APP is a web application designed to manage employee information eff
 
 ### Backend
 - [x] Set up MySQL database
-- [ ] Configure Prisma ORM
+
 - [X] Create User model
 - [x] Implement API endpoints for employee management
-  - [ ] Add employee
-  - [ ] Update employee
-  - [ ] Delete employee
+  - [x] Add employee
+  - [x] Update employee
+  - [x] Delete employee
   - [x] Fetch employee details
 - [x] Implement user authentication
-  - [ ] Password hashing and security
+  - [x] Password hashing and security
   - [ ] JWT token generation and validation
 - [x] Validate input data
 
 ### Frontend
 - [x] Initialize Next.js project
 - [x] Set up project structure
-- [ ] Implement UI components
+- [x] Implement UI components
   - [x] Dashboard
     - [x] Cards
-    - [ ] Charts
     - [ ] Employees per page
     - [ ] Filter employees by Company
-  - [ ] Employee management forms
+    - [ ] Auto refresh Data
+  - [x] Employee management forms
   - [x] Login and registration forms
-- [ ] Integrate API endpoints with frontend
-- [ ] Implement authentication flows
+- [x] Integrate API endpoints with frontend
+- [x] Implement authentication flows
   - [X] User login
   - [x] Protected routes (temporarily off)
 
@@ -72,14 +72,8 @@ The frontend development is ongoing. The project structure is set up, and basic 
 
 3. Set up the database:
     - Ensure MySQL is installed and running.
-    - Create a database for the project.
+    - Create a database for the project. (Or use an existing one)
     - Update the `.env` file with your database credentials.
-
-4. Run Prisma migrations: (NOT DONE YET)
-    ```bash
-    npx prisma migrate dev
-    npx prisma generate
-    ```
 
 5. Start the development server:
     ```bash
