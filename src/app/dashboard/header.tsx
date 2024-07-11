@@ -8,10 +8,11 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { signOut } from "@/auth";
 
-export default function Header() {
+export const DashboardHeader = () => {
+
   return (
     <header className="flex items-center h-16 px-4 border-b bg-background shadow-sm sm:px-6">
       <div className="flex items-center gap-4">
@@ -71,4 +72,4 @@ export default function Header() {
       </div>
     </header>
   );
-}
+};

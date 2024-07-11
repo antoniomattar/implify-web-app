@@ -102,7 +102,7 @@ export default function LoginForm() {
             </Button>
           </CardContent>
           <CardFooter className="text-center text-sm text-muted-foreground">
-            Don&apos;t have an account?{" "}
+            Don&apos;t have an account?&nbsp; 
             <Link
               href="#"
               className="font-medium text-primary-foreground hover:underline"

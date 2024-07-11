@@ -6,17 +6,14 @@ import {
 } from "@/components/ui/pagination";
 import React, { useState, useEffect } from "react";
 import { Employee } from "@/lib/Employee";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useRouter } from "next/navigation";
 import LoadingSkeleton from "@/components/loading";
-import { User } from "lucide-react";
 import UserCard from "@/components/card";
+import AddEmployee from "./addEmployee";
 
 export const EmployeesPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [employeesPerPage, setEmployeesPerPage] = useState(3); // State to control employees per page
+  const [employeesPerPage, setEmployeesPerPage] = useState(5); // State to control employees per page
   const [totalPages, setTotalPages] = useState(0);
 
   // State to hold employees data
@@ -73,19 +70,7 @@ export const EmployeesPage = () => {
             ))}
 
             {/* Add Employee Card */}
-            <Button
-              className="rounded-3xl h-fit w-fit max-w-md mx-auto hover:shadow-2xl transition-shadow"
-              onClick={() => router.push("/dashboard/add")}
-            >
-              <CardContent className="p-6 text-center flex flex-col items-center justify-center">
-                <div className="flex items-center justify-center">
-                  <User className="h-12 w-12 text-muted-foreground" />
-                </div>
-                <h2 className="mt-4 text-lg font-bold text-muted-foreground">
-                  Add Employee
-                </h2>
-              </CardContent>
-            </Button>
+            <AddEmployee />
           </div>
         </div>
         {/* Pagination Logic */}

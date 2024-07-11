@@ -5,7 +5,7 @@ export type Employee = {
   county: string;
   company: string;
   fname: string;
-  id: number;
   lname: string;
   photo: Blob;
+  id: number;
 };

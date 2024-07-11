@@ -6,7 +6,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React, { useEffect, useState } from "react";
 import { Employee } from "@/lib/Employee";
 import { useRouter } from "next/navigation";
-import Header from "./header";
+import {DashboardHeader} from "./header";
 import {
   Pagination,
   PaginationContent,
@@ -41,7 +41,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
-      <Header />
+      <DashboardHeader />
       <EmployeesPage/>
     </div>
   );
