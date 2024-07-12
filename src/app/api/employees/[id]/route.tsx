@@ -51,7 +51,6 @@ export async function PUT(
 
     query += fields.join(", ") + " where id = ?";
     values.push(id);
-    console.log(query, values);
     const [rows] = await db.execute(query, values);
     db.release();
     return NextResponse.json(rows);

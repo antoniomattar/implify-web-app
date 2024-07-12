@@ -1,8 +1,8 @@
+'use server';
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { authConfig } from "../auth.config";
 import type { User } from "@/lib/User";
-
 // TO BE USED IF PASSED TO DATABASE FOR LOGIN
 
 // async function getUser(email: string): Promise<User | undefined> {

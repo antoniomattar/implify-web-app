@@ -12,7 +12,6 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { signOut } from "@/auth";
 
 export const DashboardHeader = () => {
-
   return (
     <header className="flex items-center h-16 px-4 border-b bg-background shadow-sm sm:px-6">
       <div className="flex items-center gap-4">
@@ -53,19 +52,13 @@ export const DashboardHeader = () => {
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-                <div className="h-4 w-4" />
-                <form
-                  action={async () => {
-                    // "use server";
-                    await signOut(
-                      {
-                        redirect: true,
-                        redirectTo: "/login",
-                      }
-                    );
-                  }}
-                ></form>
-                <span>Logout</span>
+              <button
+                onClick={async () => {
+                  await signOut();
+                }}
+              >
+                Logout
+              </button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
