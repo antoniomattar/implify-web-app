@@ -135,7 +135,7 @@ export const EmployeesPage = () => {
           <fieldset className="border border-gray-300 p-4 rounded mb-4">
             <legend className="text-lg font-semibold">Filters</legend>
             <div className="mb-4">
-              <label htmlFor="nameFilter" className="mr-2">Name:</label>
+              <label htmlFor="nameFilter" className="mr-2">First Name:</label>
               <input
                 id="nameFilter"
                 name="name"
