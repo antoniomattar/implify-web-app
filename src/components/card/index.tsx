@@ -7,10 +7,10 @@ import { useRouter } from "next/navigation";
 export default function UserCard(props: Employee) {
   const router = useRouter();
   return (
-    <div>
+    <div className="h-full">
       <Card
         style={{ backgroundColor: props.color }}
-        className="w-full max-w-md mx-auto hover:shadow-2xl transition-shadow"
+        className="w-full max-w-md mx-auto hover:shadow-2xl transition-shadow h-full"
       >
         <CardHeader className="bg-muted/20 p-6">
           <div className="flex flex-col items-center justify-between gap-4">

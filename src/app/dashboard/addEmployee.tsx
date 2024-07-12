@@ -1,20 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import AddEmployeeModal from "@/components/add/addEmployeeModal";
 
 function AddEmployee() {
-  const router = useRouter();
-
   const [showModal, setShowModal] = useState(false);
 
   return (
     <div>
       <Button
-        className="rounded-lg h-fit w-fit max-w-xs mx-auto hover:shadow-lg transition-shadow ml-5"
+        className="rounded-lg h-fit w-full max-w-xs mx-auto hover:shadow-lg transition-shadow"
         onClick={() => setShowModal(true)}
       >
         <CardContent className="p-3 text-center flex flex-col items-center justify-center">

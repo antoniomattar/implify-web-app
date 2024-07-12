@@ -38,7 +38,6 @@ export default function AddEmployeeModal({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(employee);
     axios.post("/api/employees", employee);
     onClose();
   };
@@ -54,8 +53,8 @@ export default function AddEmployeeModal({
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleSubmit}>
-            <CardContent className="space-y-4 md:space-y-2">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <CardContent className="space-y-4">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <EmployeeInput
                   id="fname"
                   label="First Name"
