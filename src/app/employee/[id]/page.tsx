@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Employee } from "@/lib/Employee";
 import LoadingSkeleton from "@/components/loading";
-import {DashboardHeader} from "@/app/dashboard/header";
+import { DashboardHeader } from "@/app/dashboard/header";
 import UserCard from "@/components/card";
 
 const DeleteConfirmationModal = ({
@@ -114,9 +114,16 @@ export default function Page({ params }: { params: { id: string } }) {
       return;
     }
 
-    await axios.put(`/api/employees/${id}`, employee);
-    setIsEditing(false);
-    setError(null);
+    
+    try {
+      const response = await axios.put(`/api/employees/${id}`, employee);
+      setIsEditing(false);
+      setError(null);
+      
+    } catch (error) {
+      setError("Failed to update employee.");
+      return;
+    }
   };
 
   const handleDelete = async () => {
@@ -266,6 +273,41 @@ export default function Page({ params }: { params: { id: string } }) {
                 }
               />
             </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="color"
+              >
+                Favorite Color:
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="color"
+                type="text"
+                value={employee.color}
+                onChange={(e) =>
+                  setEmployee({ ...employee, color: e.target.value })
+                }
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="photo"
+              >
+                Photo URL:
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="color"
+                type="text"
+                value={employee.photo}
+                onChange={(e) =>
+                  setEmployee({ ...employee, photo: e.target.value })
+                }
+              />
+            </div>
+
             {/* Add other fields similarly */}
             <div className="flex items-center justify-between">
               <button
