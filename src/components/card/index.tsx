@@ -16,7 +16,7 @@ export default function UserCard(props: Employee) {
           <div className="flex flex-col items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <Avatar className="h-16 w-16">
-                {/* <AvatarImage src="/placeholder-user.jpg" /> */}
+                <AvatarImage src={props.photo} />
                 <AvatarFallback>
                   {props.fname[0]}
                   {props.lname[0]}
