@@ -170,14 +170,14 @@ export const EmployeesPage = () => {
           </div>
 
           {/* Right side buttons */}
-          <div className="flex items-center ml-auto gap-4">
+          <div className="flex flex-col md:flex-row items-center ml-auto md:gap-4">
             {/* Add Employee Card */}
             <AddEmployee />
 
             {/* Show Filters Button */}
             <button
               onClick={() => setIsFilterVisible(!isFilterVisible)}
-              className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors w-full"
             >
               {isFilterVisible ? "Hide Filters" : "Show Filters"}
             </button>
