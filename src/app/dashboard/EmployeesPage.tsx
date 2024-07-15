@@ -9,6 +9,8 @@ import {
   PaginationContent,
   PaginationItem,
   PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 } from "@/components/ui/pagination";
 
 export const EmployeesPage = () => {
@@ -55,12 +57,36 @@ export const EmployeesPage = () => {
     setCurrentPage(pageNumber);
   };
 
-  const handleEmployeesPerPageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const goToFirstPage = () => {
+    setCurrentPage(1);
+  };
+
+  const goToLastPage = () => {
+    setCurrentPage(Math.ceil(employees.length / employeesPerPage));
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < Math.ceil(employees.length / employeesPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handleEmployeesPerPageChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setEmployeesPerPage(Number(event.target.value));
     setCurrentPage(1); // Reset to first page on employees per page change
   };
 
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleFilterChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setFilter({
       ...filter,
       [event.target.name]: event.target.value,
@@ -68,15 +94,22 @@ export const EmployeesPage = () => {
     setCurrentPage(1); // Reset to first page on filter change
   };
 
-  const handleCompanyCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCompanyCheckboxChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const companyName = event.target.value;
     setFilter((prevFilter) => {
       if (event.target.checked) {
-        return { ...prevFilter, companies: [...prevFilter.companies, companyName] };
+        return {
+          ...prevFilter,
+          companies: [...prevFilter.companies, companyName],
+        };
       } else {
         return {
           ...prevFilter,
-          companies: prevFilter.companies.filter((company) => company !== companyName),
+          companies: prevFilter.companies.filter(
+            (company) => company !== companyName
+          ),
         };
       }
     });
@@ -84,12 +117,18 @@ export const EmployeesPage = () => {
   };
 
   // Get unique company names from employees
-  const uniqueCompanies = Array.from(new Set(employees.map((employee) => employee.company)));
+  const uniqueCompanies = Array.from(
+    new Set(employees.map((employee) => employee.company))
+  );
 
   // Apply filters to the employees list
   const filteredEmployees = employees.filter((employee) => {
-    const matchesName = employee.fname.toLowerCase().includes(filter.name.toLowerCase());
-    const matchesCompany = filter.companies.length === 0 || filter.companies.includes(employee.company);
+    const matchesName = employee.fname
+      .toLowerCase()
+      .includes(filter.name.toLowerCase());
+    const matchesCompany =
+      filter.companies.length === 0 ||
+      filter.companies.includes(employee.company);
     return matchesName && matchesCompany;
   });
 
@@ -99,7 +138,10 @@ export const EmployeesPage = () => {
   // Calculate the current employees to display
   const indexOfLastEmployee = currentPage * employeesPerPage;
   const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-  const currentEmployees = filteredEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
+  const currentEmployees = filteredEmployees.slice(
+    indexOfFirstEmployee,
+    indexOfLastEmployee
+  );
 
   const router = useRouter();
 
@@ -108,9 +150,12 @@ export const EmployeesPage = () => {
   return (
     <div>
       <main className="flex-1 p-4 sm:px-6 sm:py-0">
-        <div className="flex justify-between items-center my-4">
-          <div>
-            <label htmlFor="employeesPerPage" className="mr-2">Employees per page:</label>
+        <div className="flex justify-between items-center my-4 gap-4">
+          {/* Employees per page */}
+          <div className="flex items-center">
+            <label htmlFor="employeesPerPage" className="mr-2">
+              Employees per page:
+            </label>
             <select
               id="employeesPerPage"
               value={employeesPerPage}
@@ -123,19 +168,29 @@ export const EmployeesPage = () => {
               <option value={20}>20</option>
             </select>
           </div>
-          <button
-            onClick={() => setIsFilterVisible(!isFilterVisible)}
-            className="ml-4 p-2 bg-blue-500 text-white rounded"
-          >
-            {isFilterVisible ? "Hide Filters" : "Show Filters"}
-          </button>
+
+          {/* Right side buttons */}
+          <div className="flex items-center ml-auto gap-4">
+            {/* Add Employee Card */}
+            <AddEmployee />
+
+            {/* Show Filters Button */}
+            <button
+              onClick={() => setIsFilterVisible(!isFilterVisible)}
+              className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            >
+              {isFilterVisible ? "Hide Filters" : "Show Filters"}
+            </button>
+          </div>
         </div>
 
         {isFilterVisible && (
           <fieldset className="border border-gray-300 p-4 rounded mb-4">
             <legend className="text-lg font-semibold">Filters</legend>
             <div className="mb-4">
-              <label htmlFor="nameFilter" className="mr-2">First Name:</label>
+              <label htmlFor="nameFilter" className="mr-2">
+                First Name:
+              </label>
               <input
                 id="nameFilter"
                 name="name"
@@ -172,21 +227,43 @@ export const EmployeesPage = () => {
             {currentEmployees.map((employee) => (
               <UserCard key={employee.id} {...employee} />
             ))}
-
-            {/* Add Employee Card */}
-            <AddEmployee />
           </div>
         </div>
 
         {/* Pagination Logic */}
-        <Pagination>
+        <Pagination className="items-center">
+          <button
+            onClick={goToFirstPage}
+            disabled={currentPage === 1}
+            className="hover:bg-slate-100 rounded-lg p-3 m-3 text-xs"
+          >
+            First
+          </button>
+          <PaginationPrevious onClick={goToPreviousPage} />
           <PaginationContent>
-            {Array.from({ length: totalPages }, (_, i) => (
-              <PaginationItem key={i} onClick={() => handlePageChange(i + 1)}>
-                <PaginationLink>{i + 1}</PaginationLink>
-              </PaginationItem>
-            ))}
+            {Array.from({ length: totalPages }, (_, i) => {
+              const isActive = currentPage === i + 1;
+              return (
+                <PaginationItem
+                  key={i}
+                  onClick={() => handlePageChange(i + 1)}
+                  className={`${
+                    isActive ? "bg-slate-100 rounded-full" : ""
+                  } p-2 m-1`}
+                >
+                  <PaginationLink>{i + 1}</PaginationLink>
+                </PaginationItem>
+              );
+            })}
           </PaginationContent>
+          <PaginationNext onClick={goToNextPage} />
+          <button
+            onClick={goToLastPage}
+            disabled={currentPage === totalPages}
+            className="hover:bg-slate-100 rounded-lg p-3 m-3 text-xs"
+          >
+            Last
+          </button>
         </Pagination>
       </main>
     </div>

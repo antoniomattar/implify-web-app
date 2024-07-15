@@ -7,22 +7,21 @@ import AddEmployeeModal from "@/components/add/addEmployeeModal";
 function AddEmployee() {
   const [showModal, setShowModal] = useState(false);
 
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
+
   return (
-    <div>
-      <Button
-        className="rounded-lg h-fit w-full max-w-xs mx-auto hover:shadow-lg transition-shadow"
-        onClick={() => setShowModal(true)}
+    <div className="flex justify-center my-4">
+      <button
+        className="ml-4 p-2 bg-blue-500 text-white rounded hover:shadow-lg transition-shadow flex items-center"
+        onClick={openModal}
       >
-        <CardContent className="p-3 text-center flex flex-col items-center justify-center">
-          <div className="flex items-center justify-center">
-            <User className="h-8 w-8 text-muted-foreground" />
-          </div>
-          <h2 className="mt-2 text-sm font-bold text-muted-foreground">
-            Add Employee
-          </h2>
-        </CardContent>
-      </Button>
-      <AddEmployeeModal show={showModal} onClose={() => setShowModal(false)} />
+        <User className="h-4 w-4 mr-2" />
+        <span className="text-sm font-bold">Add Employee</span>
+      </button>
+      {showModal && (
+        <AddEmployeeModal show={showModal} onClose={closeModal} />
+      )}
     </div>
   );
 }

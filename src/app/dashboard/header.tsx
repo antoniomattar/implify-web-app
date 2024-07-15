@@ -56,6 +56,7 @@ export const DashboardHeader = () => {
                 onClick={async () => {
                   await signOut();
                 }}
+                className="mx-auto"
               >
                 Logout
               </button>
