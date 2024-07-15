@@ -6,6 +6,6 @@ export type Employee = {
   company: string;
   fname: string;
   lname: string;
-  photo: Blob;
+  photo: string;
   id: number;
 };
